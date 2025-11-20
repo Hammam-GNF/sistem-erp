@@ -23,9 +23,10 @@ class ProductFactory extends Factory
             'sku' => fake()->unique()->bothify('SKU-###-???'),
             'name' => fake()->word(),
             'description' => fake()->sentence(),
-            'unit_id' => Unit::factory(),
             'cost' => fake()->randomFloat(2, 1, 100),
             'price' => fake()->randomFloat(2, 10, 100),
+            'stock' => fake()->numberBetween(0,100),
+            'unit_id' => Unit::factory(),
         ];
     }
 }

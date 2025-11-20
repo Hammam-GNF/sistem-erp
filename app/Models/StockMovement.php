@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class StockMovement extends Model
 {
+    use HasFactory;
     protected $fillable = ['product_id','warehouse_id','qty','type','reference_type','reference_id','note','user_id'];
     
     public function product()

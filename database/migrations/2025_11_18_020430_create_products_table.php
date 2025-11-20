@@ -16,9 +16,10 @@ return new class extends Migration
             $table->string('sku')->unique()->nullable();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->foreignId('unit_id')->nullable()->constrained('units')->nullOnDelete();
             $table->decimal('cost', 15, 2)->default(0);
             $table->decimal('price', 15, 2)->default(0);
+            $table->decimal('stock', 18, 3)->default(0);
+            $table->foreignId('unit_id')->nullable()->constrained('units')->nullOnDelete();
             $table->timestamps();
         });
     }

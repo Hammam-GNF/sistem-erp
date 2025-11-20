@@ -9,7 +9,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['sku','name','description','unit_id','cost','price'];
+    protected $fillable = ['sku','name','description','cost','price','stock','unit_id'];
 
     public function unit()
     {
@@ -21,7 +21,7 @@ class Product extends Model
         return $this->hasMany(ProductStock::class);
     }
 
-    public function movements()
+    public function stockMovements()
     {
         return $this->hasMany(StockMovement::class);
     }

@@ -19,8 +19,8 @@ class UnitFactory extends Factory
     public function definition(): array
     {
         return [
-            'code' => fake()->unique()->lexify('U?'),
-            'name' => fake()->word(),
+            'name' => fake()->randomElement(['Piece', 'Box', 'Kilogram', 'Liter']),
+            'symbol' => fake()->randomElement(['pcs', 'box', 'kg', 'L']),
         ];
     }
 }
