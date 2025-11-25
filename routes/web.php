@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseInvoiceController;
 use App\Http\Controllers\PurchaseOrderController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -17,6 +18,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    //Users
+    Route::get('/users', [UserController::class, 'index'])->name('user.index');
+    Route::get('/users/getall', [UserController::class, 'getAll'])->name('user.getall');
+    Route::post('/users', [UserController::class, 'store'])->name('user.store');
+    Route::post('/user/{id}', [UserController::class, 'update'])->name('user.update');
+    Route::get('/user/{id}', [UserController::class, 'show'])->name('user.show');
+    Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
 
     //Purchase Order
     Route::get('/purchase', [PurchaseOrderController::class, 'index'])->name('purchase.index');
