@@ -21,16 +21,11 @@ class StockMovementFactory extends Factory
     protected $model = StockMovement::class;
     public function definition(): array
     {
-        $types = ['in', 'out', 'transfer', 'adjust'];
         return [
-            'product_id' => Product::factory(),
-            'warehouse_id' => Warehouse::factory(),
-            'qty' => fake()->randomFloat(3, 1, 100),
-            'type' => fake()->randomElement($types),
-            'reference_type' => null,
+            'type' => fake()->randomElement(['in','out']),
+            'qty' => fake()->numberBetween(1,10),
+            'reference_type' => 'Manual',
             'reference_id' => null,
-            'note' => fake()->sentence(),
-            'user_id' => User::factory(),
         ];
     }
 }

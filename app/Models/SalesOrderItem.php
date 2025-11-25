@@ -5,12 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class StockMovement extends Model
+class SalesOrderItem extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['item_id', 'type', 'qty', 'reference_type', 'reference_id'];
-    
+    protected $fillable = ['sales_order_id', 'item_id', 'qty', 'price'];
+
+    public function salesOrder()
+    {
+        return $this->belongsTo(SalesOrder::class);
+    }
+
     public function item()
     {
         return $this->belongsTo(Item::class);

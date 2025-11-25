@@ -2,16 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Product;
+use App\Models\Customer;
+use App\Models\Item;
 use App\Models\PurchaseInvoice;
 use App\Models\PurchaseInvoiceItem;
 use App\Models\PurchaseOrder;
 use App\Models\PurchaseOrderItem;
+use App\Models\PurchaseRequest;
 use App\Models\Role;
+use App\Models\SalesOrder;
 use App\Models\Supplier;
-use App\Models\Unit;
 use App\Models\User;
-use App\Models\Warehouse;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -24,38 +25,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
      {
-        // Roles
         Role::factory(3)->create();
+        User::factory(5)->create();
 
-        // Users
-        User::factory(10)->create();
-
-        // Units
-        Unit::factory(5)->create();
-
-        // Products
-        Product::factory(10)->create();
-
-        // Warehouses
-        Warehouse::factory(3)->create();
-
-        // Suppliers
         Supplier::factory(10)->create();
+        Customer::factory(20)->create();
+        Item::factory(15)->create();
 
-        // Purchase Orders
-        PurchaseOrder::factory(10)
-        ->has(
-            PurchaseOrderItem::factory()->count(3),
-            'items'
-        )
-        ->create();
-
-        // Purchase Invoice
-        PurchaseInvoice::factory(10)
-        ->has(
-            PurchaseInvoiceItem::factory()->count(3),
-            'items'
-        )
-        ->create();
+        PurchaseRequest::factory(10)->create();
+        SalesOrder::factory(10)->create();
     }
 }

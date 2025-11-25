@@ -14,10 +14,9 @@ return new class extends Migration
         Schema::create('purchase_orders', function (Blueprint $table) {
             $table->id();
             $table->string('po_number')->unique();
-            $table->foreignId('supplier_id')->constrained('suppliers');
-            $table->date('po_date');
-            $table->enum('status', ['draft', 'ordered', 'received'])->default('draft');
-            $table->text('notes')->nullable();
+            $table->foreignId('purchase_request_id')->nullable()->constrained('purchase_requests')->nullOnDelete();
+            $table->foreignId('supplier_id')->constrained()->cascadeOnDelete();
+            $table->enum('status', ['open', 'received', 'closed'])->default('open');
             $table->timestamps();
         });
     }

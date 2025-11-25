@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PurchaseOrderItem extends Model
+class PurchaseRequestItem extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['purchase_order_id', 'item_id', 'qty', 'price'];
+    protected $fillable = ['purchase_request_id', 'item_id', 'quantity'];
 
-    public function purchaseOrder()
+    public function request()
     {
-        return $this->belongsTo(PurchaseOrder::class);
+        return $this->belongsTo(PurchaseRequest::class, 'purchase_request_id');
     }
 
     public function item()

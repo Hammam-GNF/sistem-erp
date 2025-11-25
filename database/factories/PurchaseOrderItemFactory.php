@@ -24,11 +24,8 @@ class PurchaseOrderItemFactory extends Factory
         $price = $this->faker->numberBetween(10000, 500000);
 
         return [
-            'purchase_order_id' => PurchaseOrder::inRandomOrder()->value('id') ?? PurchaseOrder::factory(),
-            'product_id'        => Product::inRandomOrder()->value('id') ?? Product::factory(),
-            'qty'               => $qty,
-            'price'             => $price,
-            'subtotal'          => $qty * $price,
+            'qty' => fake()->numberBetween(1, 10),
+            'price' => fake()->randomFloat(2, 10000, 100000),
         ];
     }
 }

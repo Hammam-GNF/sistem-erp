@@ -2,27 +2,23 @@
 
 namespace Database\Factories;
 
-use App\Models\Role;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Role>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\SalesOrderItem>
  */
-class RoleFactory extends Factory
+class SalesOrderItemFactory extends Factory
 {
     /**
      * Define the model's default state.
      *
      * @return array<string, mixed>
      */
-    protected $model = Role::class;
-
     public function definition(): array
     {
-        static $roles = ['Admin', 'Purchasing', 'Sales'];
-
         return [
-            'role_name' => array_shift($roles),
+            'qty' => fake()->numberBetween(1,5),
+            'price' => fake()->randomFloat(2, 10000, 100000),
         ];
     }
 }

@@ -9,7 +9,6 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
     /**
@@ -52,8 +51,8 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
-    public function stockMovements()
+    public function purchaseRequests()
     {
-        return $this->hasMany(StockMovement::class);
+        return $this->hasMany(PurchaseRequest::class, 'requested_by');
     }
 }
