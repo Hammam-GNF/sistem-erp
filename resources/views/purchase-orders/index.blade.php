@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Purchase Order List') }}
+            {{ __('Purchase Orders') }}
         </h2>
     </x-slot>
     
@@ -14,16 +14,16 @@
                             <i class="bi bi-database-add"></i> Tambah
                         </button>
                     </div>
-                    @include('purchase.partials.table')
+                    @include('purchase-orders.partials.table')
                 </div>
             </div>
         </div>
     </div>
 
     @push('scripts')
-        @include('purchase.partials.scripts')
-        @include('purchase.modals.create')
-        @include('purchase.modals.edit')
+        @include('purchase-orders.partials.scripts')
+        @include('purchase-orders.modals.create')
+        @include('purchase-orders.modals.edit')
     @endpush
 
 </x-app-layout>

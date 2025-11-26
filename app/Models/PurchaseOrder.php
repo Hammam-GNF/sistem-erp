@@ -9,16 +9,16 @@ class PurchaseOrder extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['po_number', 'supplier_id', 'purchase_request_id', 'status'];
-
-    public function supplier()
-    {
-        return $this->belongsTo(Supplier::class);
-    }
+    protected $fillable = ['po_number', 'purchase_request_id', 'supplier_id', 'status'];
 
     public function purchaseRequest()
     {
         return $this->belongsTo(PurchaseRequest::class);
+    }
+    
+    public function supplier()
+    {
+        return $this->belongsTo(Supplier::class);
     }
 
     public function items()

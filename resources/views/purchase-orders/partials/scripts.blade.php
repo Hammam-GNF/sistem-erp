@@ -5,7 +5,7 @@
     $(document).ready(function() {
         table = $('#myTable').DataTable({
             "ajax": {
-                "url": "{{ route('purchase.getall') }}",
+                "url": "{{ route('po.getall') }}",
                 "type": "GET",
                 "dataType": "json",
                 "dataSrc": function(response) {
@@ -19,10 +19,9 @@
             "columns": [
                 { "data": "iteration", className: "text-center" },
                 { "data": "po_number" },
+                { "data": "purchase_request.pr_number" },
                 { "data": "supplier.name" },
-                { "data": "po_date" },
                 { "data": "status" },
-                { "data": "notes" },
                 {
                     "data": null,
                     "render": function(data, type, row) {
@@ -40,11 +39,11 @@
         });
    
         //Handle add form
-        $('#create-po-form, #edit-po-form').submit(function(e) {
+        $('#create-po, #edit-po').submit(function(e) {
             e.preventDefault();
             let form = $(this);
-            let isEdit = form.attr('id') === 'edit-po-form';
-            let url = isEdit ? `/purchase/${$('#edit_id').val()}` : "{{ route('purchase.store') }}";
+            let isEdit = form.attr('id') === 'edit-po';
+            let url = isEdit ? `/purchase-order/${$('#edit_id').val()}` : "{{ route('po.store') }}";
             let method = isEdit ? 'POST' : 'POST';
 
             $.ajax({
@@ -64,10 +63,11 @@
                     });
                     form[0].reset();
                     let modalId = isEdit ? '#editModal' : '#createModal';
+                    // $(modalId).modal('hide');
+                    // $('.modal-backdrop').remove();
+                    // $('body').removeClass('modal-open').css('overflow', 'auto');
+                    // $('html').css('overflow', 'auto');
                     $(modalId).modal('hide');
-                    $('.modal-backdrop').remove();
-                    $('body').removeClass('modal-open').css('overflow', 'auto');
-                    $('html').css('overflow', 'auto');
                     table.ajax.reload();
                 },
                 error: function(xhr) {
@@ -89,16 +89,17 @@
             var id = $(this).data('id');
 
             $.ajax({
-                url: `/purchase/${id}`,
+                url: `/purchase-order/${id}`,
                 type: "GET",
                 success: function(res) {
                     if(res.status === 200){
                         var po = res.data;
 
                         $('#edit_id').val(po.id);
+                        $('#edit_po_number').val(po.po_number);
+                        $('#edit_purchase_request_id').val(po.purchase_request_id);
                         $('#edit_supplier_id').val(po.supplier_id);
-                        $('#edit_po_date').val(po.po_date);
-                        $('#edit_notes').val(po.notes);
+                        $('#edit_status').val(po.status);
 
                         $('#editModal').modal('show');
                     } else {
@@ -115,10 +116,10 @@
         //Handle update form
         // $('#btn-update-po').click(function() {
         //     let id = $('#edit_id').val();
-        //     let formData = new FormData(document.getElementById('edit-po-form'));
+        //     let formData = new FormData(document.getElementById('edit-item'));
 
         //     $.ajax({
-        //         url: `/purchase/${id}`,
+        //         url: `/item/${id}`,
         //         type: "POST",
         //         data: formData,
         //         processData: false,
@@ -154,12 +155,12 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: `/purchase/${id}`,
+                    url: `/purchase-order/${id}`,
                     type: "DELETE",
                     data: { _token: "{{ csrf_token() }}" },
 
                     success: function(res) {
-                        Swal.fire('Hapus!', res.message, 'success');
+                        Swal.fire('Berhasil dihapus!', res.message, 'success');
                         table.ajax.reload(null, false); // <= aman
                     }
                 });
