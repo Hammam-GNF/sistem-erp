@@ -91,7 +91,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/stock-movement/{id}', [StockMovementController::class, 'destroy'])->name('sm.destroy');
     
     //Invoices
-    Route::get('/invoices', [InvoiceController::class, 'invoices'])->name('invoice.index');
+    Route::get('/invoices', [InvoiceController::class, 'index'])->name('invoice.index');
     Route::get('/invoices/getall', [InvoiceController::class, 'getAll'])->name('invoice.getall');
     Route::post('/invoices', [InvoiceController::class, 'store'])->name('invoice.store');
     Route::post('/invoice/{id}', [InvoiceController::class, 'update'])->name('invoice.update');
@@ -99,7 +99,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/invoice/{id}', [InvoiceController::class, 'destroy'])->name('invoice.destroy');
 
     //Payments
-    Route::get('/payments', [PaymentController::class, 'payments'])->name('payment.index');
+    Route::get('/payments', [PaymentController::class, 'index'])->name('payment.index');
     Route::get('/payments/getall', [PaymentController::class, 'getAll'])->name('payment.getall');
     Route::post('/payments', [PaymentController::class, 'store'])->name('payment.store');
     Route::post('/payment/{id}', [PaymentController::class, 'update'])->name('payment.update');
