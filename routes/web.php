@@ -73,15 +73,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/purchase-order/{id}', [PurchaseOrderController::class, 'update'])->name('po.update');
     Route::get('/purchase-order/{id}', [PurchaseOrderController::class, 'show'])->name('po.show');
     Route::delete('/purchase-order/{id}', [PurchaseOrderController::class, 'destroy'])->name('po.destroy');
-
-    //Stock Movements
-    Route::get('/stock-movements', [StockMovementController::class, 'index'])->name('sm.index');
-    Route::get('/stock-movements/getall', [StockMovementController::class, 'getAll'])->name('sm.getall');
-    Route::post('/stock-movements', [StockMovementController::class, 'store'])->name('sm.store');
-    Route::post('/stock-movement/{id}', [StockMovementController::class, 'update'])->name('sm.update');
-    Route::get('/stock-movement/{id}', [StockMovementController::class, 'show'])->name('sm.show');
-    Route::delete('/stock-movement/{id}', [StockMovementController::class, 'destroy'])->name('sm.destroy');
-
+    
     //Sales Orders
     Route::get('/sales-orders', [SalesOrderController::class, 'index'])->name('so.index');
     Route::get('/sales-orders/getall', [SalesOrderController::class, 'getAll'])->name('so.getall');
@@ -89,7 +81,15 @@ Route::middleware('auth')->group(function () {
     Route::post('/sales-order/{id}', [SalesOrderController::class, 'update'])->name('so.update');
     Route::get('/sales-order/{id}', [SalesOrderController::class, 'show'])->name('so.show');
     Route::delete('/sales-order/{id}', [SalesOrderController::class, 'destroy'])->name('so.destroy');
-
+    
+    //Stock Movements
+    Route::get('/stock-movements', [StockMovementController::class, 'index'])->name('sm.index');
+    Route::get('/stock-movements/getall', [StockMovementController::class, 'getAll'])->name('sm.getall');
+    Route::post('/stock-movements', [StockMovementController::class, 'store'])->name('sm.store');
+    Route::post('/stock-movement/{id}', [StockMovementController::class, 'update'])->name('sm.update');
+    Route::get('/stock-movement/{id}', [StockMovementController::class, 'show'])->name('sm.show');
+    Route::delete('/stock-movement/{id}', [StockMovementController::class, 'destroy'])->name('sm.destroy');
+    
     //Invoices
     Route::get('/invoices', [InvoiceController::class, 'invoices'])->name('invoice.index');
     Route::get('/invoices/getall', [InvoiceController::class, 'getAll'])->name('invoice.getall');
