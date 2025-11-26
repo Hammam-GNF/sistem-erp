@@ -1,7 +1,14 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\ItemController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseOrderController;
+use App\Http\Controllers\PurchaseRequestController;
+use App\Http\Controllers\SalesOrderController;
+use App\Http\Controllers\StockMovementController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -35,13 +42,69 @@ Route::middleware('auth')->group(function () {
     Route::get('/supplier/{id}', [SupplierController::class, 'show'])->name('supplier.show');
     Route::delete('/supplier/{id}', [SupplierController::class, 'destroy'])->name('supplier.destroy');
 
-    //Purchase Order
-    Route::get('/purchase', [PurchaseOrderController::class, 'index'])->name('purchase.index');
-    Route::get('/purchase/getall', [PurchaseOrderController::class, 'getall'])->name('purchase.getall');
-    Route::post('/purchase', [PurchaseOrderController::class, 'store'])->name('purchase.store');
-    Route::post('/purchase/{id}', [PurchaseOrderController::class, 'update'])->name('purchase.update');
-    Route::get('/purchase/{id}', [PurchaseOrderController::class, 'show'])->name('purchase.show');
-    Route::delete('/purchase/{id}', [PurchaseOrderController::class, 'destroy'])->name('purchase.destroy');
+    //Customers
+    Route::get('/customers', [CustomerController::class, 'index'])->name('customer.index');
+    Route::get('/customers/getall', [CustomerController::class, 'getAll'])->name('customer.getall');
+    Route::post('/customers', [CustomerController::class, 'store'])->name('customer.store');
+    Route::post('/customer/{id}', [CustomerController::class, 'update'])->name('customer.update');
+    Route::get('/customer/{id}', [CustomerController::class, 'show'])->name('customer.show');
+    Route::delete('/customer/{id}', [CustomerController::class, 'destroy'])->name('customer.destroy');
+
+    //Items
+    Route::get('/items', [ItemController::class, 'index'])->name('item.index');
+    Route::get('/items/getall', [ItemController::class, 'getAll'])->name('item.getall');
+    Route::post('/items', [ItemController::class, 'store'])->name('item.store');
+    Route::post('/item/{id}', [ItemController::class, 'update'])->name('item.update');
+    Route::get('/item/{id}', [ItemController::class, 'show'])->name('item.show');
+    Route::delete('/item/{id}', [ItemController::class, 'destroy'])->name('item.destroy');
+
+    //Purchase Requests
+    Route::get('/purchase-requests', [PurchaseRequestController::class, 'index'])->name('pr.index');
+    Route::get('/purchase-requests/getall', [PurchaseRequestController::class, 'getAll'])->name('pr.getall');
+    Route::post('/purchase-requests', [PurchaseRequestController::class, 'store'])->name('pr.store');
+    Route::post('/purchase-request/{id}', [PurchaseRequestController::class, 'update'])->name('pr.update');
+    Route::get('/purchase-request/{id}', [PurchaseRequestController::class, 'show'])->name('pr.show');
+    Route::delete('/purchase-request/{id}', [PurchaseRequestController::class, 'destroy'])->name('pr.destroy');
+
+    //Purchase Orders
+    Route::get('/purchase-orders', [PurchaseOrderController::class, 'index'])->name('po.index');
+    Route::get('/purchase-orders/getall', [PurchaseOrderController::class, 'getAll'])->name('po.getall');
+    Route::post('/purchase-orders', [PurchaseOrderController::class, 'store'])->name('po.store');
+    Route::post('/purchase-order/{id}', [PurchaseOrderController::class, 'update'])->name('po.update');
+    Route::get('/purchase-order/{id}', [PurchaseOrderController::class, 'show'])->name('po.show');
+    Route::delete('/purchase-order/{id}', [PurchaseOrderController::class, 'destroy'])->name('po.destroy');
+
+    //Stock Movements
+    Route::get('/stock-movements', [StockMovementController::class, 'index'])->name('sm.index');
+    Route::get('/stock-movements/getall', [StockMovementController::class, 'getAll'])->name('sm.getall');
+    Route::post('/stock-movements', [StockMovementController::class, 'store'])->name('sm.store');
+    Route::post('/stock-movement/{id}', [StockMovementController::class, 'update'])->name('sm.update');
+    Route::get('/stock-movement/{id}', [StockMovementController::class, 'show'])->name('sm.show');
+    Route::delete('/stock-movement/{id}', [StockMovementController::class, 'destroy'])->name('sm.destroy');
+
+    //Sales Orders
+    Route::get('/sales-orders', [SalesOrderController::class, 'index'])->name('so.index');
+    Route::get('/sales-orders/getall', [SalesOrderController::class, 'getAll'])->name('so.getall');
+    Route::post('/sales-orders', [SalesOrderController::class, 'store'])->name('so.store');
+    Route::post('/sales-order/{id}', [SalesOrderController::class, 'update'])->name('so.update');
+    Route::get('/sales-order/{id}', [SalesOrderController::class, 'show'])->name('so.show');
+    Route::delete('/sales-order/{id}', [SalesOrderController::class, 'destroy'])->name('so.destroy');
+
+    //Invoices
+    Route::get('/invoices', [InvoiceController::class, 'invoices'])->name('invoice.index');
+    Route::get('/invoices/getall', [InvoiceController::class, 'getAll'])->name('invoice.getall');
+    Route::post('/invoices', [InvoiceController::class, 'store'])->name('invoice.store');
+    Route::post('/invoice/{id}', [InvoiceController::class, 'update'])->name('invoice.update');
+    Route::get('/invoice/{id}', [InvoiceController::class, 'show'])->name('invoice.show');
+    Route::delete('/invoice/{id}', [InvoiceController::class, 'destroy'])->name('invoice.destroy');
+
+    //Payments
+    Route::get('/payments', [PaymentController::class, 'payments'])->name('payment.index');
+    Route::get('/payments/getall', [PaymentController::class, 'getAll'])->name('payment.getall');
+    Route::post('/payments', [PaymentController::class, 'store'])->name('payment.store');
+    Route::post('/payment/{id}', [PaymentController::class, 'update'])->name('payment.update');
+    Route::get('/payment/{id}', [PaymentController::class, 'show'])->name('payment.show');
+    Route::delete('/payment/{id}', [PaymentController::class, 'destroy'])->name('payment.destroy');
 
 });
 

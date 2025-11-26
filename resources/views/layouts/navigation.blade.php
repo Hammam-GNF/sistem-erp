@@ -15,15 +15,64 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
-                        {{ __('Users') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('supplier.index')" :active="request()->routeIs('supplier.index')">
-                        {{ __('Suppliers') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('purchase.index')" :active="request()->routeIs('purchase.index')">
-                        {{ __('Purchase Order') }}
-                    </x-nav-link>
+                    <div class="hidden sm:flex sm:items-center sm:ms-6">
+                        <x-dropdown align="left" width="48">
+                            <x-slot name="trigger">
+                                <x-nav-link href="#" class="inline-flex items-center px-1 pt-1 border-b-2
+                                    {{ (request()->routeIs('user.index') || request()->routeIs('supplier.index') || request()->routeIs('customer.index') || request()->routeIs('item.index')) ? 'border-indigo-400 text-gray-900' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }} text-sm font-medium leading-5 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out"
+                                    @click.prevent="$refs.dropdown.__x.$data.open = !$refs.dropdown.__x.$data.open">
+                                    Master Data
+                                    <svg class="ms-1 fill-current h-4 w-4 self-center" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                </x-nav-link>
+                            </x-slot>
+                            <x-slot name="content">
+                                <x-dropdown-link :href="route('user.index')">Users</x-dropdown-link>
+                                <x-dropdown-link :href="route('supplier.index')">Suppliers</x-dropdown-link>
+                                <x-dropdown-link :href="route('customer.index')">Customers</x-dropdown-link>
+                                <x-dropdown-link :href="route('item.index')">Items</x-dropdown-link>
+                            </x-slot>
+                        </x-dropdown>
+                    </div>
+                    <div class="hidden sm:flex sm:items-center sm:ms-6">
+                        <x-dropdown align="left" width="48">
+                            <x-slot name="trigger">
+                                <x-nav-link href="#" class="inline-flex items-center px-1 pt-1 border-b-2
+                                    {{ (request()->routeIs('pr.index') || request()->routeIs('po.index') || request()->routeIs('sm.index') || request()->routeIs('so.index')) ? 'border-indigo-400 text-gray-900' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }} text-sm font-medium leading-5 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out"
+                                    @click.prevent="$refs.dropdown.__x.$data.open = !$refs.dropdown.__x.$data.open">
+                                    Transactions
+                                    <svg class="ms-1 fill-current h-4 w-4 self-center" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                </x-nav-link>
+                            </x-slot>
+                            <x-slot name="content">
+                                <x-dropdown-link :href="route('pr.index')">Purchase Requests</x-dropdown-link>
+                                <x-dropdown-link :href="route('po.index')">Purchase Orders</x-dropdown-link>
+                                <x-dropdown-link :href="route('sm.index')">Stock Movements</x-dropdown-link>
+                                <x-dropdown-link :href="route('so.index')">Sales Orders</x-dropdown-link>
+                            </x-slot>
+                        </x-dropdown>
+                    </div>
+                    <div class="hidden sm:flex sm:items-center sm:ms-6">
+                        <x-dropdown align="left" width="48">
+                            <x-slot name="trigger">
+                                <x-nav-link href="#" class="inline-flex items-center px-1 pt-1 border-b-2
+                                    {{ (request()->routeIs('invoice.index') || request()->routeIs('payment.index')) ? 'border-indigo-400 text-gray-900' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }} text-sm font-medium leading-5 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out"
+                                    @click.prevent="$refs.dropdown.__x.$data.open = !$refs.dropdown.__x.$data.open">
+                                    Finance
+                                    <svg class="ms-1 fill-current h-4 w-4 self-center" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                </x-nav-link>
+                            </x-slot>
+                            <x-slot name="content">
+                                <x-dropdown-link :href="route('invoice.index')">Invoices</x-dropdown-link>
+                                <x-dropdown-link :href="route('payment.index')">Payments</x-dropdown-link>
+                            </x-slot>
+                        </x-dropdown>
+                    </div>
                 </div>
             </div>
 
