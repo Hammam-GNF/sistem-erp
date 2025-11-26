@@ -18,11 +18,11 @@
                     <x-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
                         {{ __('Users') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('supplier.index')" :active="request()->routeIs('supplier.index')">
+                        {{ __('Suppliers') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('purchase.index')" :active="request()->routeIs('purchase.index')">
                         {{ __('Purchase Order') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('pi.index')" :active="request()->routeIs('pi.index')">
-                        {{ __('Purchase Invoice') }}
                     </x-nav-link>
                 </div>
             </div>

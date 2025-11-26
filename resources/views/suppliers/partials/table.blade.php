@@ -2,9 +2,11 @@
     <table id="myTable" class="display">
         <thead>
             <tr>
-                <th class="text-center">No</th>
-                <th>Nama Kelas</th>
-                <th class="text-center">Aksi</th>
+                <th>No</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th></th>
             </tr>
         </thead>
     </table>
